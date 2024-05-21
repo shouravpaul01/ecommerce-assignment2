@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
 import { ProductServices } from './product.service';
+import productValidationSchema from './product.validation';
 
 //store product data
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
-    const result = await ProductServices.createProductDB(product);
+    const parseValidationData = productValidationSchema.parse(product);
+    const result = await ProductServices.createProductDB(parseValidationData);
     res.status(200).json({
       success: true,
       message: 'Product created successfully!',
@@ -19,7 +21,8 @@ const createProduct = async (req: Request, res: Response) => {
 //Getting all product data
 const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const result = await ProductServices.getAllProductsDB();
+    const { searchTerm } = req.query;
+    const result = await ProductServices.getAllProductsDB(searchTerm as string);
     res.status(200).json({
       success: true,
       message: 'Product fetched successfully!.',
@@ -33,7 +36,7 @@ const getAllProducts = async (req: Request, res: Response) => {
 const getProductById = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    console.log(productId);
+
     const result = await ProductServices.getProductByIdDB(productId);
     res.status(200).json({
       success: true,
