@@ -30,17 +30,17 @@ const deleteProductByIdDB = async (productId: string) => {
   const result = await ProductModel.deleteOne({ _id: productId });
   return result;
 };
-const searchProductDataDB = async (searchTerm: string) => {
-  const search: any = {};
-  if (searchTerm) {
-    search.$or = [
-      { name: { $regex: searchTerm, $option: 'i' } },
-      { description: { $regex: searchTerm, $option: 'i' } },
-    ];
-  }
-  const result = await ProductModel.find(search);
-  return result;
-};
+// const searchProductDataDB = async (searchTerm: string) => {
+//   const search: any = {};
+//   if (searchTerm) {
+//     search.$or = [
+//       { name: { $regex: searchTerm, $option: 'i' } },
+//       { description: { $regex: searchTerm, $option: 'i' } },
+//     ];
+//   }
+//   const result = await ProductModel.find(search);
+//   return result;
+// };
 export const ProductServices = {
   createProductDB,
   getAllProductsDB,
