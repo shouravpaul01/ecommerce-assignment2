@@ -1,11 +1,13 @@
 import { Schema, model } from 'mongoose';
-import { TProduct } from './product.interface';
-const variantsSchema = new Schema({
+import { TProduct, TVariants } from './product.interface';
+const variantsSchema = new Schema<TVariants>({
   type: {
     type: String,
+    required: [true, 'The feild is required.'],
   },
   value: {
     type: String,
+    required: [true, 'The feild is required.'],
   },
 });
 const productSchema = new Schema<TProduct>({
@@ -26,7 +28,7 @@ const productSchema = new Schema<TProduct>({
     required: [true, 'The feild is required.'],
   },
   tags: [String],
-  varriants: [variantsSchema],
+  variants: [variantsSchema],
   inventory: {
     quantity: {
       type: Number,
@@ -39,4 +41,4 @@ const productSchema = new Schema<TProduct>({
   },
 });
 
-const Product = model<TProduct>('Product', productSchema);
+export const ProductModel = model<TProduct>('Product', productSchema);

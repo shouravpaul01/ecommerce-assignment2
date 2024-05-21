@@ -1,4 +1,4 @@
-type TVarriants = {
+export type TVariants = {
   type: string;
   value: string;
 };
@@ -9,7 +9,7 @@ export type TProduct = {
   price: number;
   category: string;
   tags: string[];
-  varriants: Array<TVarriants>;
+  variants: Array<TVariants>;
   inventory: {
     quantity: number;
     inStock: boolean;

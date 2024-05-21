@@ -1,14 +1,16 @@
-import express from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
-const app = express();
+import { ProductRoutes } from './modules/product/product.route';
+const app: Application = express();
 
 //parsers
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  const a = 10;
+//Application Routes
+app.use('/api/products', ProductRoutes);
 
+app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
