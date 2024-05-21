@@ -11,8 +11,8 @@ const getAllProductsDB = async (searchTerm: string) => {
   //This condition will work when something search from product DB
   if (searchTerm) {
     search.$or = [
-      { name: { $regex: searchTerm, $option: 'i' } },
-      { description: { $regex: searchTerm, $option: 'i' } },
+      { name: { $regex: searchTerm, $options: 'i' } },
+      { description: { $regex: searchTerm, $options: 'i' } },
     ];
   }
   const result = await ProductModel.find(search);

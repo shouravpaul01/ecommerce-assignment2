@@ -81,22 +81,7 @@ const deleteProductById = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
-// const searchProductData = async (req: Request, res: Response) => {
-//   try {
-//     const { searchTerm } = req.query;
 
-//     const result = await ProductServices.searchProductDataDB(
-//       searchTerm as string,
-//     );
-//     res.status(200).json({
-//       success: true,
-//       message: 'Product deleted successfully!',
-//       data: result,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 export const ProductControllers = {
   createProduct,
   getAllProducts,
